@@ -62,4 +62,7 @@ input{
   outline: none;
   border:none;
 }
+body{
+  background-color: #DEE2EB;
+}
 `;
