@@ -46,6 +46,8 @@ table {
 }
 *{
   box-sizing: border-box;
+  transition: background-color 0.2s linear;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 a{
   text-decoration: none;
@@ -63,6 +65,10 @@ input{
   border:none;
 }
 body{
-  background-color: #DEE2EB;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: ${(props) => props.theme.bgColor};
 }
 `;

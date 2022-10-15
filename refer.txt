@@ -1,0 +1,6 @@
+commit message convention 참고
+- https://overcome-the-limits.tistory.com/6
+
+css 작성 순서 참고 
+- https://velog.io/@gygy/CSS-%EC%9E%91%EC%84%B1-%EC%88%9C%EC%84%9C
+
