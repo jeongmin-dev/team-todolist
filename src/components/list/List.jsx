@@ -35,8 +35,8 @@ const ListContainer = styled.div`
   display: grid;
   height: 100%;
   min-height: 30vh;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  grid-template-rows: repeat(auto-fill, minmax(150px, 180px));
+  grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
+  //grid-template-rows: repeat(auto-fill, minmax(150px, 180px));
   gap: 15px;
   padding: 5px 0px;
 `;

@@ -1,6 +1,17 @@
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import { __deleteTodos, __toggleTodos } from "../../redux/modules/todos";
 
-function Todo({ id, title, content, color, createdAt }) {
+function Todo({ id, title, content, color, createdAt, isDone }) {
+  const dispatch = useDispatch();
+  const onToggle = () => {
+    dispatch(
+      __toggleTodos({ id, title, content, color, createdAt, isDone: !isDone })
+    );
+  };
+  const onDelete = () => {
+    dispatch(__deleteTodos(id));
+  };
   return (
     <ListItem bgColor={color}>
       <TodoItem>
@@ -10,7 +21,7 @@ function Todo({ id, title, content, color, createdAt }) {
       <TodoUtils>
         <span>{(createdAt + "").slice(0, 1)} 시간전</span>
         <TodoBtns>
-          <span>
+          <span onClick={onToggle}>
             <svg
               className="w-6 h-6"
               fill="none"
@@ -26,7 +37,7 @@ function Todo({ id, title, content, color, createdAt }) {
               />
             </svg>
           </span>
-          <span>
+          <span onClick={onDelete}>
             <svg
               className="w-6 h-6"
               fill="none"
@@ -62,18 +73,20 @@ const ListItem = styled.div`
   border-radius: 15px;
   background-color: ${(props) => props.bgColor};
   cursor: pointer;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
 `;
 
 const TodoItem = styled.div`
   h3 {
     margin-bottom: 7px;
+    color: #262626;
     font-weight: 700;
-    font-size: 22px;
+    font-size: 23px;
   }
   p {
-    color: rgba(0, 0, 0, 0.7);
+    color: #565656;
     font-weight: 500;
-    font-size: 16px;
+    font-size: 15px;
   }
 `;
 

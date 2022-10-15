@@ -4,7 +4,7 @@
       "id": 0,
       "title": "hello",
       "content": "yaho",
-      "color": "yellow",
+      "color": "#F4CEB8",
       "isDone": false,
       "createdAt": 1665846659220
     },
@@ -12,31 +12,23 @@
       "id": 1,
       "title": "hello1",
       "content": "yaho",
-      "color": "red",
-      "isDone": false,
-      "createdAt": 1665846659220
-    },
-    {
-      "id": 2,
-      "title": "hello2",
-      "content": "yaho",
-      "color": "blue",
-      "isDone": false,
+      "color": "#9BECC8",
+      "isDone": true,
       "createdAt": 1665846659220
     },
     {
       "id": 3,
       "title": "hello3",
       "content": "yaho",
-      "color": "green",
-      "isDone": false,
+      "color": "#D4B6F4",
+      "isDone": true,
       "createdAt": 1665846659220
     },
     {
       "id": 4,
       "title": "hello3",
       "content": "yaho",
-      "color": "purple",
+      "color": "#8cacff",
       "isDone": true,
       "createdAt": 1665846659220
     },
@@ -44,8 +36,16 @@
       "id": 5,
       "title": "hello3",
       "content": "yaho",
-      "color": "beige",
-      "isDone": true,
+      "color": "#E4EF93",
+      "isDone": false,
+      "createdAt": 1665846659220
+    },
+    {
+      "id": 6,
+      "title": "hello3",
+      "content": "yaho",
+      "color": "#99b7ff",
+      "isDone": false,
       "createdAt": 1665846659220
     }
   ],
