@@ -46,6 +46,7 @@ table {
 }
 *{
   box-sizing: border-box;
+  transition: background-color 0.2s linear;
 }
 a{
   text-decoration: none;

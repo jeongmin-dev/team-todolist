@@ -9,6 +9,7 @@ export default Layout;
 const Wrapper = styled.div`
   width: 60vw;
   max-width: 1000px;
+  min-width: 600px;
   height: 70vh;
   max-height: 700px;
   padding: 30px;
