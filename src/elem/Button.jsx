@@ -15,6 +15,7 @@ function Button(props) {
     _hoverColor,
     _hoverBgColor,
   } = props;
+
   const styles = {
     _width,
     _padding,
