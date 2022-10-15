@@ -63,6 +63,10 @@ input{
   border:none;
 }
 body{
-  background-color: #DEE2EB;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: ${(props) => props.theme.bgColor};
 }
 `;
