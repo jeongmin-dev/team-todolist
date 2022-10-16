@@ -4,24 +4,28 @@ import { Flexbox } from "../../styles/flex";
 
 function Header({ title }) {
   const navigate = useNavigate();
+  const { pathname } = window.location;
+  console.log(pathname);
   return (
     <Nav>
-      <span onClick={() => navigate(-1)}>
-        <svg
-          className="w-6 h-6"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M10 19l-7-7m0 0l7-7m-7 7h18"
-          />
-        </svg>
-      </span>
+      {pathname !== "/" ? (
+        <span onClick={() => navigate(-1)}>
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M10 19l-7-7m0 0l7-7m-7 7h18"
+            />
+          </svg>
+        </span>
+      ) : null}
       <h3>{title}</h3>
     </Nav>
   );
@@ -31,6 +35,7 @@ const Nav = styled.div`
   display: flex;
   align-items: center;
   position: relative;
+  height: 30px;
   span {
     ${Flexbox}
     width:30px;
