@@ -24,9 +24,28 @@ function Todo({ id, title, content, color, createdAt, isDone }) {
   return (
     <ListItem bgColor={color}>
       <TodoItem>
-        <Link to={`todos/${id}`}>
-          <h3>{title}</h3>
-        </Link>
+        <div>
+          <Link to={`todos/${id}`}>
+            <h3>{title}</h3>
+          </Link>
+          <span>
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+              />
+            </svg>
+          </span>
+        </div>
+
         <p>{content}</p>
       </TodoItem>
       <TodoUtils>
@@ -103,7 +122,7 @@ const TodoItem = styled.div`
     &:hover {
       h3 {
         color: rgba(255, 255, 255, 0.8);
-        text-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+        text-shadow: 0 2px 3px rgba(0, 0, 0, 0.15);
         transform: translateY(-3px);
       }
     }
@@ -118,6 +137,30 @@ const TodoItem = styled.div`
     font-size: 15px;
     white-space: nowrap;
     text-overflow: ellipsis;
+  }
+  &:first-child {
+    div {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      span {
+        width: 15px;
+        height: 15px;
+        cursor: pointer;
+        svg {
+          color: rgba(0, 0, 0, 0.7);
+          transition: color 1s linear;
+          transition: transform 0.3s linear;
+        }
+        &:hover {
+          svg {
+            color: rgba(255, 255, 255, 0.8);
+            text-shadow: 0 2px 3px rgba(0, 0, 0, 0.15);
+            transform: translateY(-3px);
+          }
+        }
+      }
+    }
   }
   @media screen and (max-width: 780px) {
     h3 {

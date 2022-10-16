@@ -31,6 +31,20 @@ const BigContainer = styled.div`
   &::-webkit-scrollbar {
     //display: none; /* Chrome, Safari, Opera*/
   }
+  &::-webkit-scrollbar {
+    width: 5px; /* 스크롤바의 너비 */
+  }
+
+  &::-webkit-scrollbar-thumb {
+    height: 30%; /* 스크롤바의 길이 */
+    background: rgba(0, 0, 0, 0.2); /* 스크롤바의 색상 */
+
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: inherit;
+  }
   @media screen and (max-width: 770px) {
     //height: 74vw;
     //min-height: 460px;
