@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Button from "../../elem/Button";
 import { __deleteTodos, __toggleTodos } from "../../redux/modules/todos";
-import { toggleAni } from "../../redux/modules/toggle";
+import { toggleAni } from "../../redux/modules/animation";
 import CheckSvg from "../../styles/svg/CheckSvg";
 import DeleteSvg from "../../styles/svg/DeleteSvg";
 import EditSvg from "../../styles/svg/EditSvg";
@@ -27,9 +27,9 @@ const btnStyle = {
   _padding: "8px",
 };
 
-function Todo({ id, title, content, color, createdAt, isDone }) {
+function Todo({ id, title, content, color, createdAt, isDone, setLayId }) {
   const dispatch = useDispatch();
-  const fadeOut = useSelector((state) => state.toggle);
+  const fadeOut = useSelector((state) => state.animation.boxAni);
   const onToggle = () => {
     dispatch(toggleAni(boxAni));
     dispatch(
@@ -40,12 +40,16 @@ function Todo({ id, title, content, color, createdAt, isDone }) {
     dispatch(__deleteTodos(id));
     dispatch(toggleAni(boxAni));
   };
+  const onEdit = () => {
+    setLayId(id);
+  };
   return (
     <ListItem
       variants={fadeOut}
       initial="initial"
       exit="exit"
       bgcolor={color}
+      layoutId={id + ""}
       layout
     >
       <TodoItem>
@@ -53,7 +57,7 @@ function Todo({ id, title, content, color, createdAt, isDone }) {
           <Link to={`todos/${id}`}>
             <h3>{title}</h3>
           </Link>
-          <span>
+          <span onClick={onEdit}>
             <EditSvg />
           </span>
         </div>

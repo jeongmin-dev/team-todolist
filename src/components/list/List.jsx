@@ -1,14 +1,16 @@
 import { AnimatePresence } from "framer-motion";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { __getTodos } from "../../redux/modules/todos";
 import Todo from "../todo/Todo";
+import EditModal from "./EditModal";
 
 function List({ isDone }) {
   const { todos } = useSelector((state) => state.todos);
   const data = todos.filter((todo) => todo.isDone === isDone);
   const dispatch = useDispatch();
+  const [layId, setLayId] = useState(null);
   useEffect(() => {
     dispatch(__getTodos());
   }, [dispatch]);
@@ -17,10 +19,13 @@ function List({ isDone }) {
       <ListContainer>
         <AnimatePresence>
           {data?.map((todo) => (
-            <Todo key={todo.id} {...todo} />
+            <Todo key={todo.id} {...todo} setLayId={setLayId} />
           ))}
         </AnimatePresence>
       </ListContainer>
+      <AnimatePresence>
+        {layId ? <EditModal layoutId={layId} setLayId={setLayId} /> : null}
+      </AnimatePresence>
     </BigContainer>
   );
 }
@@ -31,6 +36,8 @@ const BigContainer = styled.div`
   height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
+  position: relative;
+  margin-top: 10px;
   &::-webkit-scrollbar {
     //display: none; /* Chrome, Safari, Opera*/
   }

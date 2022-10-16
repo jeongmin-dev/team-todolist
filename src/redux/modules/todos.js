@@ -44,6 +44,22 @@ export const __deleteTodos = createAsyncThunk(
   }
 );
 
+export const __editTodos = createAsyncThunk(
+  "todos/editTodos",
+  async (payload, thunkApi) => {
+    console.log(payload);
+    try {
+      const { data } = await axios.patch(
+        `${SERVER_URL}/${payload.id}`,
+        payload
+      );
+      return thunkApi.fulfillWithValue(data);
+    } catch (e) {
+      return thunkApi.rejectWithValue(e);
+    }
+  }
+);
+
 const initialState = {
   todos: [],
   isLoading: false,
@@ -87,6 +103,20 @@ const todosSlice = createSlice({
       state.todos = state.todos.filter((todo) => todo.id !== action.payload);
     },
     [__deleteTodos.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
+    [__editTodos.pending]: (state, action) => {
+      state.isLoading = true;
+    },
+    [__editTodos.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      const idx = state.todos.findIndex(
+        (todo) => todo.id === action.payload.id
+      );
+      state.todos[idx] = action.payload;
+    },
+    [__editTodos.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
     },

@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
-import { toggleAni } from "../../redux/modules/toggle";
+import { toggleAni } from "../../redux/modules/animation";
 
 function TodosNav({ focus, setFocus }) {
   const dispatch = useDispatch();
