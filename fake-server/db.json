@@ -5,7 +5,7 @@
       "title": "hello",
       "content": "yahodsadasdlsakndjkasndjkasndjknasjkdnasjkdnkjaskdnakjsdnjkasndjkansdjknasjkdnajksdnjkasndjkasnk",
       "color": "#F4CEB8",
-      "isDone": false,
+      "isDone": true,
       "createdAt": 1665846659220
     },
     {
@@ -13,7 +13,7 @@
       "title": "hello3",
       "content": "yaho",
       "color": "#E4EF93",
-      "isDone": false,
+      "isDone": true,
       "createdAt": 1665846659220
     },
     {
@@ -21,7 +21,7 @@
       "title": "hello3",
       "content": "yaho",
       "color": "#99b7ff",
-      "isDone": false,
+      "isDone": true,
       "createdAt": 1665846659220
     },
     {

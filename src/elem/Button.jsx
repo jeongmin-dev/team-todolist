@@ -7,7 +7,7 @@ function Button(props) {
     children,
     _onClick,
     _padding,
-    bgColor,
+    _bgColor,
     _color,
     _fontSize,
     _fontWeight,
@@ -19,7 +19,7 @@ function Button(props) {
   const styles = {
     _width,
     _padding,
-    bgColor,
+    _bgColor,
     _color,
     _fontSize,
     _fontWeight,
@@ -38,7 +38,7 @@ Button.defaultProps = {
   _onClick: () => {},
   _width: "120px",
   _padding: "12px",
-  bgColor: "#242424",
+  _bgColor: "#242424",
   _color: "#ffffff",
   _fontSize: "14px",
   borderRadius: "8px",
@@ -53,7 +53,7 @@ const Btn = styled.button`
   ${Flexbox};
   width: ${(props) => props._width || "100%"};
   padding: ${(props) => props._padding};
-  background-color: ${(props) => props.bgColor};
+  background-color: ${(props) => props._bgColor};
   font-size: ${(props) => props._fontSize};
   font-weight: ${(props) => props._fontWeight};
   color: ${(props) => props._color};

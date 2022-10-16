@@ -1,7 +1,13 @@
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import { toggleAni } from "../../redux/modules/toggle";
 
 function TodosNav({ focus, setFocus }) {
-  const onToggle = () => setFocus((prev) => !prev);
+  const dispatch = useDispatch();
+  const onToggle = () => {
+    dispatch(toggleAni(null));
+    setFocus((prev) => !prev);
+  };
   return (
     <Nav>
       <NavItem onClick={onToggle} focus={focus}>
@@ -32,3 +38,12 @@ const NavItem = styled.li`
     color: ${(props) => (!props.focus ? "rgba(0,0,0,0.7)" : "#242424")};
   }
 `;
+
+// const boxAni = {
+//   initial: {
+//     opacity: 1,
+//   },
+//   exit: {
+//     opacity: 0,
+//   },
+// };

@@ -1,3 +1,4 @@
+import { AnimatePresence } from "framer-motion";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
@@ -5,7 +6,7 @@ import { __getTodos } from "../../redux/modules/todos";
 import Todo from "../todo/Todo";
 
 function List({ isDone }) {
-  const { todos, error, isLoading } = useSelector((state) => state.todos);
+  const { todos } = useSelector((state) => state.todos);
   const data = todos.filter((todo) => todo.isDone === isDone);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -14,9 +15,11 @@ function List({ isDone }) {
   return (
     <BigContainer>
       <ListContainer>
-        {data?.map((todo) => (
-          <Todo key={todo.id} {...todo} />
-        ))}
+        <AnimatePresence>
+          {data?.map((todo) => (
+            <Todo key={todo.id} {...todo} />
+          ))}
+        </AnimatePresence>
       </ListContainer>
     </BigContainer>
   );

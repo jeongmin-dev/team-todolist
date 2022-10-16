@@ -1,31 +1,53 @@
 import { motion } from "framer-motion";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Button from "../../elem/Button";
 import { __deleteTodos, __toggleTodos } from "../../redux/modules/todos";
+import { toggleAni } from "../../redux/modules/toggle";
 import CheckSvg from "../../styles/svg/CheckSvg";
 import DeleteSvg from "../../styles/svg/DeleteSvg";
 import EditSvg from "../../styles/svg/EditSvg";
+
+const boxAni = {
+  initial: {
+    y: 0,
+    opacity: 1,
+  },
+  exit: {
+    y: -20,
+    opacity: 0,
+  },
+};
+
 const btnStyle = {
   _width: "30px",
-  bgColor: "white",
+  _bgColor: "white",
   borderRadius: "50%",
   _padding: "8px",
 };
 
 function Todo({ id, title, content, color, createdAt, isDone }) {
   const dispatch = useDispatch();
+  const fadeOut = useSelector((state) => state.toggle);
   const onToggle = () => {
+    dispatch(toggleAni(boxAni));
     dispatch(
       __toggleTodos({ id, title, content, color, createdAt, isDone: !isDone })
     );
   };
   const onDelete = () => {
     dispatch(__deleteTodos(id));
+    dispatch(toggleAni(boxAni));
   };
   return (
-    <ListItem bgColor={color} layout>
+    <ListItem
+      variants={fadeOut}
+      initial="initial"
+      exit="exit"
+      bgcolor={color}
+      layout
+    >
       <TodoItem>
         <div>
           <Link to={`todos/${id}`}>
@@ -64,7 +86,7 @@ const ListItem = styled(motion.div)`
   aspect-ratio: 1/1;
   padding: 20px;
   border-radius: 15px;
-  background-color: ${(props) => props.bgColor};
+  background-color: ${(props) => props.bgcolor};
   cursor: pointer;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
   @media screen and (max-width: 690px) {
