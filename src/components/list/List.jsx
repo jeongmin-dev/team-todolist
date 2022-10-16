@@ -26,17 +26,31 @@ export default List;
 
 const BigContainer = styled.div`
   height: 100%;
-  overflow-y: scroll;
+  overflow-y: auto;
   &::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera*/
+    //display: none; /* Chrome, Safari, Opera*/
+  }
+  @media screen and (max-width: 770px) {
+    //height: 74vw;
+    //min-height: 460px;
   }
 `;
 const ListContainer = styled.div`
   display: grid;
-  height: 100%;
   min-height: 30vh;
-  grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
-  //grid-template-rows: repeat(auto-fill, minmax(150px, 180px));
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  grid-template-rows: repeat(auto-fill, minmax(180px, 180px));
   gap: 15px;
-  padding: 5px 0px;
+  padding: 5px;
+
+  @media screen and (max-width: 770px) {
+    grid-template-rows: repeat(auto-fill, minmax(140px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(137px, 1fr));
+    gap: 15px;
+  }
+  @media screen and (max-width: 690px) {
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
 `;

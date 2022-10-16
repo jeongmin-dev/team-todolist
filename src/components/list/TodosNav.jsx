@@ -20,10 +20,10 @@ const Nav = styled.ul`
   display: flex;
   align-items: center;
   width: 100%;
-  margin-bottom: 20px;
+  padding: 30px 0px 15px 10px;
 `;
 const NavItem = styled.li`
-  font-size: 22px;
+  font-size: 20px;
   font-weight: ${(props) => (props.focus ? "700" : "600")};
   margin-right: 20px;
   cursor: pointer;

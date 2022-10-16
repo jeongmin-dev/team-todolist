@@ -1,6 +1,14 @@
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import Button from "../../elem/Button";
 import { __deleteTodos, __toggleTodos } from "../../redux/modules/todos";
+
+const btnStyle = {
+  _width: "30px",
+  bgColor: "white",
+  borderRadius: "50%",
+  _padding: "8px",
+};
 
 function Todo({ id, title, content, color, createdAt, isDone }) {
   const dispatch = useDispatch();
@@ -21,7 +29,7 @@ function Todo({ id, title, content, color, createdAt, isDone }) {
       <TodoUtils>
         <span>{(createdAt + "").slice(0, 1)} 시간전</span>
         <TodoBtns>
-          <span onClick={onToggle}>
+          <Button {...btnStyle} _onClick={onToggle}>
             <svg
               className="w-6 h-6"
               fill="none"
@@ -36,8 +44,8 @@ function Todo({ id, title, content, color, createdAt, isDone }) {
                 d="M5 13l4 4L19 7"
               />
             </svg>
-          </span>
-          <span onClick={onDelete}>
+          </Button>
+          <Button {...btnStyle} _onClick={onDelete}>
             <svg
               className="w-6 h-6"
               fill="none"
@@ -52,7 +60,7 @@ function Todo({ id, title, content, color, createdAt, isDone }) {
                 d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
               />
             </svg>
-          </span>
+          </Button>
         </TodoBtns>
       </TodoUtils>
     </ListItem>
@@ -74,6 +82,9 @@ const ListItem = styled.div`
   background-color: ${(props) => props.bgColor};
   cursor: pointer;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+  @media screen and (max-width: 690px) {
+    max-width: 80%;
+  }
 `;
 
 const TodoItem = styled.div`
@@ -88,6 +99,22 @@ const TodoItem = styled.div`
     font-weight: 500;
     font-size: 15px;
   }
+  @media screen and (max-width: 742px) {
+    h3 {
+      font-size: 20px;
+    }
+    p {
+      font-size: 14px;
+    }
+  }
+  @media screen and (max-width: 690px) {
+    h3 {
+      font-size: 25px;
+    }
+    p {
+      font-size: 18px;
+    }
+  }
 `;
 
 const TodoUtils = styled.div`
@@ -98,22 +125,24 @@ const TodoUtils = styled.div`
     color: rgba(0, 0, 0, 0.6);
     font-size: 13px;
   }
+  @media screen and (max-width: 742px) {
+    span {
+      opacity: 0;
+    }
+  }
+  @media screen and (max-width: 690px) {
+    span {
+      font-size: 15px;
+      opacity: 1;
+    }
+  }
 `;
 
 const TodoBtns = styled.div`
   display: flex;
   justify-content: end;
-  span {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 30px;
-    height: 30px;
+  button {
     margin-left: 5px;
-    background-color: white;
-    border-radius: 50%;
-    cursor: pointer;
-
     svg {
       width: 18px;
       color: black;

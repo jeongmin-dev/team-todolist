@@ -10,8 +10,9 @@ const Wrapper = styled.div`
   width: 60vw;
   max-width: 1000px;
   min-width: 400px;
-  height: 70vh;
-  max-height: 700px;
+  height: 560px;
+  /* min-height: 550px;
+  max-height: 555px; */
   padding: 30px 50px 50px 50px;
   border-radius: 20px;
   background-color: ${(props) => props.theme.boardColor};
