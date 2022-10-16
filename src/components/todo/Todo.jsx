@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -24,7 +25,7 @@ function Todo({ id, title, content, color, createdAt, isDone }) {
     dispatch(__deleteTodos(id));
   };
   return (
-    <ListItem bgColor={color}>
+    <ListItem bgColor={color} layout>
       <TodoItem>
         <div>
           <Link to={`todos/${id}`}>
@@ -52,7 +53,7 @@ function Todo({ id, title, content, color, createdAt, isDone }) {
 }
 export default Todo;
 
-const ListItem = styled.div`
+const ListItem = styled(motion.div)`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
