@@ -3,7 +3,9 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Button from "../../elem/Button";
 import { __deleteTodos, __toggleTodos } from "../../redux/modules/todos";
-
+import CheckSvg from "../../styles/svg/CheckSvg";
+import DeleteSvg from "../../styles/svg/DeleteSvg";
+import EditSvg from "../../styles/svg/EditSvg";
 const btnStyle = {
   _width: "30px",
   bgColor: "white",
@@ -29,59 +31,19 @@ function Todo({ id, title, content, color, createdAt, isDone }) {
             <h3>{title}</h3>
           </Link>
           <span>
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
-              />
-            </svg>
+            <EditSvg />
           </span>
         </div>
-
         <p>{content}</p>
       </TodoItem>
       <TodoUtils>
         <span>{(createdAt + "").slice(0, 1)} 시간전</span>
         <TodoBtns>
           <Button {...btnStyle} _onClick={onToggle}>
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M5 13l4 4L19 7"
-              />
-            </svg>
+            <CheckSvg />
           </Button>
           <Button {...btnStyle} _onClick={onDelete}>
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-              />
-            </svg>
+            <DeleteSvg />
           </Button>
         </TodoBtns>
       </TodoUtils>
@@ -105,7 +67,7 @@ const ListItem = styled.div`
   cursor: pointer;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
   @media screen and (max-width: 690px) {
-    max-width: 80%;
+    max-width: 240px;
   }
 `;
 
@@ -129,14 +91,15 @@ const TodoItem = styled.div`
   }
 
   p {
-    width: 100%;
-
+    display: -webkit-box;
     overflow: hidden;
     color: #565656;
     font-weight: 500;
     font-size: 15px;
-    white-space: nowrap;
     text-overflow: ellipsis;
+    word-break: break-all;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
   }
   &:first-child {
     div {
@@ -148,13 +111,13 @@ const TodoItem = styled.div`
         height: 15px;
         cursor: pointer;
         svg {
-          color: rgba(0, 0, 0, 0.7);
+          color: rgba(0, 0, 0, 0.4);
           transition: color 1s linear;
           transition: transform 0.3s linear;
         }
         &:hover {
           svg {
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(0, 0, 0, 0.8);
             text-shadow: 0 2px 3px rgba(0, 0, 0, 0.15);
             transform: translateY(-3px);
           }
@@ -175,6 +138,8 @@ const TodoItem = styled.div`
       font-size: 25px;
     }
     p {
+      margin-top: 10px;
+      overflow: visible;
       font-size: 18px;
     }
   }
