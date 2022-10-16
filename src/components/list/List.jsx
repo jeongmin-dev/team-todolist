@@ -26,6 +26,7 @@ export default List;
 
 const BigContainer = styled.div`
   height: 100%;
+  overflow-x: hidden;
   overflow-y: auto;
   &::-webkit-scrollbar {
     //display: none; /* Chrome, Safari, Opera*/

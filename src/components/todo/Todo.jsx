@@ -1,4 +1,5 @@
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Button from "../../elem/Button";
 import { __deleteTodos, __toggleTodos } from "../../redux/modules/todos";
@@ -23,7 +24,9 @@ function Todo({ id, title, content, color, createdAt, isDone }) {
   return (
     <ListItem bgColor={color}>
       <TodoItem>
-        <h3>{title}</h3>
+        <Link to={`todos/${id}`}>
+          <h3>{title}</h3>
+        </Link>
         <p>{content}</p>
       </TodoItem>
       <TodoUtils>
@@ -88,18 +91,35 @@ const ListItem = styled.div`
 `;
 
 const TodoItem = styled.div`
-  h3 {
-    margin-bottom: 7px;
-    color: #262626;
-    font-weight: 700;
-    font-size: 23px;
+  a {
+    h3 {
+      margin-bottom: 7px;
+      color: #262626;
+      font-weight: 700;
+      font-size: 23px;
+      transition: color 1s linear;
+      transition: transform 0.3s linear;
+    }
+    &:hover {
+      h3 {
+        color: rgba(255, 255, 255, 0.8);
+        text-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+        transform: translateY(-3px);
+      }
+    }
   }
+
   p {
+    width: 100%;
+
+    overflow: hidden;
     color: #565656;
     font-weight: 500;
     font-size: 15px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
-  @media screen and (max-width: 742px) {
+  @media screen and (max-width: 780px) {
     h3 {
       font-size: 20px;
     }
@@ -125,7 +145,7 @@ const TodoUtils = styled.div`
     color: rgba(0, 0, 0, 0.6);
     font-size: 13px;
   }
-  @media screen and (max-width: 742px) {
+  @media screen and (max-width: 780px) {
     span {
       opacity: 0;
     }

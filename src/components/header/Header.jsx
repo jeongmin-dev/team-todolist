@@ -5,11 +5,14 @@ import { Flexbox } from "../../styles/flex";
 function Header({ title }) {
   const navigate = useNavigate();
   const { pathname } = window.location;
-  console.log(pathname);
+  const prevPage = () => {
+    if (pathname === "/todolist") navigate("/");
+    else navigate(-1);
+  };
   return (
-    <Nav>
+    <Nav as="header">
       {pathname !== "/" ? (
-        <span onClick={() => navigate(-1)}>
+        <span onClick={prevPage}>
           <svg
             className="w-6 h-6"
             fill="none"

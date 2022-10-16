@@ -10,7 +10,7 @@ function TodoList() {
   return (
     <Layout>
       <Header title={"Todo List"} />
-      <ListWrapper>
+      <ListWrapper as="main">
         <TodosNav focus={focus} setFocus={setFocus} />
         <List isDone={!focus} />
       </ListWrapper>
