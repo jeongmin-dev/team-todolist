@@ -5,7 +5,7 @@
       "title": "hello",
       "content": "나이따~",
       "color": "#F4CEB8",
-      "isDone": true,
+      "isDone": false,
       "createdAt": 1665846659220
     },
     {
@@ -13,7 +13,7 @@
       "title": "수정완료!",
       "content": "이야야!!",
       "color": "#E4EF93",
-      "isDone": true,
+      "isDone": false,
       "createdAt": 1665846659220
     },
     {
@@ -29,7 +29,7 @@
       "title": "hello3",
       "content": "yaho",
       "color": "#E4EF93",
-      "isDone": true,
+      "isDone": false,
       "createdAt": 1665846659220
     },
     {
@@ -61,7 +61,7 @@
       "title": "hello3",
       "content": "yaho",
       "color": "#8cacff",
-      "isDone": true,
+      "isDone": false,
       "createdAt": 1665846659220
     }
   ],
