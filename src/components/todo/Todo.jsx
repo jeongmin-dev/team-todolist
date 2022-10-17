@@ -101,13 +101,21 @@ const ListItem = styled(motion.div)`
 
 const TodoItem = styled.div`
   a {
+    width: 100%;
+
     h3 {
+      width: 100%;
       margin-bottom: 7px;
+      overflow: hidden;
       color: #262626;
       font-weight: 700;
       font-size: 22px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
       transition: color 1s linear;
       transition: transform 0.3s linear;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
     }
     &:hover {
       h3 {
