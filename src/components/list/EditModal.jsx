@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import Button from "../../elem/Button";
+import useInputs from "../../hooks/useInputs";
 import { __editTodos } from "../../redux/modules/todos";
 import { Flexbox } from "../../styles/flex";
 import CloseSvg from "../../styles/svg/CloseSvg";
@@ -16,7 +16,7 @@ const btnStyle = {
 function EditModal({ layoutId, color, setLayId }) {
   const { todos } = useSelector((state) => state.todos);
   const todo = todos.find((todo) => todo.id === layoutId);
-  const [inputs, setInputs] = useState({
+  const { inputs, onChange } = useInputs({
     title: todo.title,
     content: todo.content,
   });
@@ -30,10 +30,6 @@ function EditModal({ layoutId, color, setLayId }) {
 
     dispatch(__editTodos({ ...todo, ...inputs }));
     setLayId(null);
-  };
-  const onChange = (e) => {
-    const { name, value } = e.target;
-    setInputs((prev) => ({ ...prev, [name]: value }));
   };
 
   return (
