@@ -71,4 +71,8 @@ body{
   height: 100vh;
   background-color: ${(props) => props.theme._bgColor};
 }
+/*링크 버튼 이미지*/
+.imgBtn {
+  width: 140px;
+}
 `;

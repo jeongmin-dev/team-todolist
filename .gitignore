@@ -10,6 +10,7 @@
 
 # production
 /build
+/fake-server
 
 # misc
 .DS_Store
