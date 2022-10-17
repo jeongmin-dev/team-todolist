@@ -9,4 +9,6 @@ function Home() {
     </Layout>
   );
 }
+
+const title = styled.h1``;
 export default Home;
