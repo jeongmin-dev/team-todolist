@@ -69,6 +69,6 @@ body{
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: ${(props) => props.theme.bgColor};
+  background-color: ${(props) => props.theme._bgColor};
 }
 `;

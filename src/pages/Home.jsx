@@ -1,11 +1,13 @@
+import { Link } from "react-router-dom";
+import Header from "../components/header/Header";
 import Layout from "../components/layout/Layout";
-import Button from "../elem/Button";
 
 function Home() {
   return (
     <Layout>
-      Home
-      <Button>버튼</Button>
+      <Header title={"Home"} />
+      <Link to="/todolist">todolist</Link>
+      <Link to="/write">작성하기</Link>
     </Layout>
   );
 }
