@@ -105,7 +105,7 @@ const TodoItem = styled.div`
       margin-bottom: 7px;
       color: #262626;
       font-weight: 700;
-      font-size: 23px;
+      font-size: 22px;
       transition: color 1s linear;
       transition: transform 0.3s linear;
     }
