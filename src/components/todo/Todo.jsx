@@ -8,6 +8,7 @@ import { toggleAni } from "../../redux/modules/animation";
 import CheckSvg from "../../styles/svg/CheckSvg";
 import DeleteSvg from "../../styles/svg/DeleteSvg";
 import EditSvg from "../../styles/svg/EditSvg";
+import timeCheck from "../util/timeCheck";
 
 const boxAni = {
   initial: {
@@ -64,7 +65,7 @@ function Todo({ id, title, content, color, createdAt, isDone, setLayId }) {
         <p>{content}</p>
       </TodoItem>
       <TodoUtils>
-        <span>{(createdAt + "").slice(0, 1)} 시간전</span>
+        <span>{timeCheck(createdAt)}</span>
         <TodoBtns>
           <Button {...btnStyle} _onClick={onToggle}>
             <CheckSvg />
