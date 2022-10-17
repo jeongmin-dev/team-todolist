@@ -58,9 +58,9 @@ function Todo({ id, title, content, color, createdAt, isDone, setLayId }) {
           <Link to={`todos/${id}`}>
             <h3>{title}</h3>
           </Link>
-          <span onClick={onEdit}>
+          <EditBtn onClick={onEdit}>
             <EditSvg />
-          </span>
+          </EditBtn>
         </div>
         <p>{content}</p>
       </TodoItem>
@@ -100,9 +100,9 @@ const ListItem = styled(motion.div)`
 `;
 
 const TodoItem = styled.div`
+  position: relative;
   a {
     width: 100%;
-
     h3 {
       width: 100%;
       margin-bottom: 7px;
@@ -137,30 +137,12 @@ const TodoItem = styled.div`
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
   }
-  &:first-child {
-    div {
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-      span {
-        width: 15px;
-        height: 15px;
-        cursor: pointer;
-        svg {
-          color: rgba(0, 0, 0, 0.4);
-          transition: color 1s linear;
-          transition: transform 0.3s linear;
-        }
-        &:hover {
-          svg {
-            color: rgba(0, 0, 0, 0.8);
-            text-shadow: 0 2px 3px rgba(0, 0, 0, 0.15);
-            transform: translateY(-3px);
-          }
-        }
-      }
-    }
+
+  div {
+    display: flex;
+    justify-content: space-between;
   }
+
   @media screen and (max-width: 780px) {
     h3 {
       font-size: 20px;
@@ -177,6 +159,27 @@ const TodoItem = styled.div`
       margin-top: 10px;
       overflow: visible;
       font-size: 18px;
+    }
+  }
+`;
+
+const EditBtn = styled.span`
+  position: absolute;
+  right: 0;
+  width: 15px;
+  height: 15px;
+
+  cursor: pointer;
+  svg {
+    color: rgba(0, 0, 0, 0.4);
+    transition: color 1s linear;
+    transition: transform 0.3s linear;
+  }
+  &:hover {
+    svg {
+      color: rgba(0, 0, 0, 0.8);
+      text-shadow: 0 2px 3px rgba(0, 0, 0, 0.15);
+      transform: translateY(-3px);
     }
   }
 `;
