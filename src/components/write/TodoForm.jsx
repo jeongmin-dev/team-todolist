@@ -15,7 +15,7 @@ function TodoForm() {
     color: "",
   });
 
-  console.log(todo);
+  //console.log(todo);
 
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
@@ -55,9 +55,9 @@ function TodoForm() {
         <StText>제목</StText>
         <Input
           type="text"
-          placeholder=" 제목을 입력해주세요. (50자이내)"
-          minLength="10"
-          maxLength="50"
+          placeholder=" 제목을 입력해주세요. (10자이내)"
+          minLength="3"
+          maxLength="10"
           value={todo.title}
           name="title"
           onChange={onChangeHandler}
