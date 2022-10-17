@@ -8,6 +8,7 @@ function Home() {
       <Header title={"Home"} />
       <Link to="/todolist">todolist</Link>
       <Link to="/write">작성하기</Link>
+      <div></div>
     </Layout>
   );
 }
