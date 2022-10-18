@@ -1,25 +1,23 @@
 import { useEffect, React } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { useParams } from "react-router-dom";
 import { __getComment } from "../../redux/modules/comments";
 import CommentEdit from "./CommentEdit";
 
-function CommentsList() {
-  const { id } = useParams();
-  const data = useSelector((state) => state.comments.comments);
-
+function CommentsList({ id }) {
+  const { comments } = useSelector((state) => state.comments);
   const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(__getComment());
   }, [dispatch]);
 
   return (
     <CommentList>
-      {data.map((comment) => {
-        return Number(id) === comment.todoId ? <CommentEdit key={comment.id} comment={comment} /> : "";
-      })}
+      {comments?.map((comment) =>
+        id === comment.todoId ? (
+          <CommentEdit key={comment.id} comment={comment} />
+        ) : null
+      )}
     </CommentList>
   );
 }

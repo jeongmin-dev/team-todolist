@@ -9,6 +9,7 @@ import CheckSvg from "../../styles/svg/CheckSvg";
 import DeleteSvg from "../../styles/svg/DeleteSvg";
 import EditSvg from "../../styles/svg/EditSvg";
 import timeCheck from "../util/timeCheck";
+import { memo } from "react";
 
 const boxAni = {
   initial: {
@@ -56,7 +57,7 @@ function Todo({ id, title, content, color, createdAt, isDone, setLayId }) {
     >
       <TodoItem>
         <div>
-          <Link to={`/todoList/${id}`}>
+          <Link to={`/todoList/${id}`} state={{ id, title, content }}>
             <h3>{title}</h3>
           </Link>
           <EditBtn onClick={onEdit}>
@@ -79,7 +80,7 @@ function Todo({ id, title, content, color, createdAt, isDone, setLayId }) {
     </ListItem>
   );
 }
-export default Todo;
+export default memo(Todo);
 
 const ListItem = styled(motion.div)`
   display: flex;

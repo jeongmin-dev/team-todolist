@@ -10,15 +10,15 @@ import { useParams } from "react-router-dom";
 
 function Comments() {
   const { id } = useParams();
-  const allList = useSelector((state) => state.todos.todos);
-  const sepTodo = allList.find((todo) => todo.id === +id);
-
+  const { todos } = useSelector((state) => state.todos);
+  const todo = todos?.find((todo) => todo.id === +id);
+  console.log("todo", todo);
   return (
     <Layout>
       <Header title={"Comments"} />
-      <TodoHeader>TODO : {sepTodo.content}</TodoHeader>
+      <TodoHeader>TODO : {todo?.content}</TodoHeader>
       <CommentsForm />
-      <CommentsList />
+      <CommentsList id={+id} />
     </Layout>
   );
 }

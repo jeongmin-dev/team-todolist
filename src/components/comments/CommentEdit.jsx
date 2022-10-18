@@ -1,10 +1,6 @@
 import { useDispatch } from "react-redux";
-import { useState, React } from "react";
-import {
-  __deleteComment,
-  __editComment,
-  __editSave,
-} from "../../redux/modules/comments";
+import { useState, React, useRef, useEffect } from "react";
+import { __deleteComment, __editSave } from "../../redux/modules/comments"; // __editComment
 import DeleteSvg from "../../styles/svg/DeleteSvg";
 import CloseSvg from "../../styles/svg/CloseSvg";
 import EditSvg from "../../styles/svg/EditSvg";
@@ -15,14 +11,14 @@ import useInputs from "../../hooks/useInputs";
 function CommentEdit({ comment }) {
   const [disable, setDisable] = useState(true);
   const dispatch = useDispatch();
-  const { inputs, onChange } = useInputs({ comment: comment.comment });
+  const { inputs, onChange, reset } = useInputs({ comment: comment.comment });
   const onDelete = (commentId) => {
     dispatch(__deleteComment(commentId));
   };
-
-  const onEdit = (commentId) => {
-    dispatch(__editComment(commentId));
-    document.getElementById("input").focus();
+  const inputRef = useRef();
+  const onEdit = async (e) => {
+    //dispatch(__editComment(commentId));
+    setDisable(false);
   };
   const EditSave = () => {
     dispatch(__editSave({ ...comment, ...inputs }));
@@ -30,10 +26,13 @@ function CommentEdit({ comment }) {
     alert("수정완료! 😁");
   };
 
+  useEffect(() => {
+    if (!disable) inputRef.current.focus();
+  }, [disable]);
   return (
     <CommentContainer>
       <ComInput
-        id="input"
+        ref={inputRef}
         type="text"
         name="comment"
         value={inputs.comment}
@@ -55,7 +54,12 @@ function CommentEdit({ comment }) {
           <DeleteSvg />
         </button>
       ) : (
-        <button onClick={() => setDisable(true)}>
+        <button
+          onClick={() => {
+            setDisable(true);
+            reset();
+          }}
+        >
           <CloseSvg />
         </button>
       )}
