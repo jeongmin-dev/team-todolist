@@ -1,56 +1,42 @@
-import { useState } from "react";
 import Button from "../../elem/Button";
 import styled from "styled-components";
 import { __addTodos } from "../../redux/modules/todos";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
+import useInputs from "../../hooks/useInputs";
 function TodoForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [todo, setTodo] = useState({
+  const { inputs, onChange, reset } = useInputs({
     title: "",
     content: "",
     color: "",
   });
 
-  //console.log(todo);
-
-  const onChangeHandler = (e) => {
-    const { name, value } = e.target;
-    setTodo({
-      ...todo,
-      [name]: value,
-    });
+  const onSubmit = (e) => {
+    e.preventDefault();
+    if (
+      inputs.title.trim() === "" ||
+      inputs.content.trim() === "" ||
+      inputs.color.trim() === ""
+    ) {
+      return alert("모든 항목을 입력해주세요.");
+    }
+    dispatch(
+      __addTodos({
+        ...inputs,
+        id: Date.now(),
+        isDone: false,
+        createdAt: Date.now(),
+      })
+    );
+    reset();
+    navigate("/todoList");
   };
 
-  const btnStyle = {};
-
   return (
-    <StForm
-      as="form"
-      onSubmit={(e) => {
-        e.preventDefault();
-        if (
-          todo.title.trim() === "" ||
-          todo.content.trim() === "" ||
-          todo.color.trim() === ""
-        ) {
-          return alert("모든 항목을 입력해주세요.");
-        }
-        dispatch(
-          __addTodos({
-            ...todo,
-            id: Date.now(),
-            isDone: false,
-            createAt: Date.now(),
-          })
-        );
-        setTodo({ title: "", content: "", color: "" });
-        navigate("/todoList");
-      }}
-    >
+    <StForm as="form" onSubmit={onSubmit}>
       <StBox>
         <StText>제목</StText>
         <Input
@@ -58,9 +44,9 @@ function TodoForm() {
           placeholder=" 제목을 입력해주세요. (10자이내)"
           minLength="3"
           maxLength="10"
-          value={todo.title}
+          value={inputs.title}
           name="title"
-          onChange={onChangeHandler}
+          onChange={onChange}
         />
         <StText>내용</StText>
         <Textarea
@@ -68,12 +54,12 @@ function TodoForm() {
           placeholder=" 내용을 입력해주세요. (200자이내)"
           rows="5"
           maxLength="200"
-          value={todo.content}
+          value={inputs.content}
           name="content"
-          onChange={onChangeHandler}
+          onChange={onChange}
         />
         <StText>색상 선택</StText>
-        <Select name="color" value={todo.color} onChange={onChangeHandler}>
+        <Select name="color" value={inputs.color} onChange={onChange}>
           <option disabled value="">
             색상 선택하기
           </option>
@@ -84,7 +70,7 @@ function TodoForm() {
           <option value="#99B7FF">blue</option>
         </Select>
       </StBox>
-      <Button {...btnStyle}>추가하기</Button>
+      <Button>추가하기</Button>
     </StForm>
   );
 }
@@ -113,6 +99,7 @@ const Input = styled.input`
   border: 2px solid #40424454;
   border-radius: 10px;
   font-size: 16px;
+  padding: 5px 10px;
 `;
 
 /*내용창 스타일 */
