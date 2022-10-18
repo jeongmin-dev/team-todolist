@@ -6,6 +6,7 @@ import { __getTodos } from "../../redux/modules/todos";
 import Todo from "../todo/Todo";
 import EditModal from "./EditModal";
 
+/** isDone 상태에 따라 todo들을 뿌려주는 컴포넌트  */
 function List({ isDone }) {
   const { todos } = useSelector((state) => state.todos);
   const data = todos.filter((todo) => todo.isDone === isDone);
@@ -23,7 +24,9 @@ function List({ isDone }) {
           ))}
         </AnimatePresence>
       </ListContainer>
-      <AnimatePresence>{layId ? <EditModal layoutId={layId} setLayId={setLayId} /> : null}</AnimatePresence>
+      <AnimatePresence>
+        {layId ? <EditModal layoutId={layId} setLayId={setLayId} /> : null}
+      </AnimatePresence>
     </BigContainer>
   );
 }

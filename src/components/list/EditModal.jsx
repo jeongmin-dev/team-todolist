@@ -13,6 +13,7 @@ const btnStyle = {
   _hoverBgColor: "#262626",
 };
 
+/** Todo의 edit 버튼을 클릭했을 때 나오는 모달창 */
 function EditModal({ layoutId, color, setLayId }) {
   const { todos } = useSelector((state) => state.todos);
   const todo = todos.find((todo) => todo.id === layoutId);

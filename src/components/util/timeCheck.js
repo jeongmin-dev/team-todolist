@@ -1,3 +1,4 @@
+/** 며칠전 등  시간 정보를 리턴하는 함수 */
 function timeCheck(prevTime = 1665846659220) {
   const currentTime = Date.now();
   const gap = (currentTime - prevTime) / 1000 / 60;
