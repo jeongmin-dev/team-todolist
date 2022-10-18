@@ -6,7 +6,7 @@ function Home() {
   return (
     <Layout>
       <Header title={"Home"} />
-      <Link to="/todolist">todolist</Link>
+      <Link to="/todoList">todolist</Link>
       <Link to="/write">작성하기</Link>
     </Layout>
   );

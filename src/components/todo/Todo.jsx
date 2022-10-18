@@ -32,9 +32,7 @@ function Todo({ id, title, content, color, createdAt, isDone, setLayId }) {
   const fadeOut = useSelector((state) => state.animation.boxAni);
   const onToggle = () => {
     dispatch(toggleAni(boxAni));
-    dispatch(
-      __toggleTodos({ id, title, content, color, createdAt, isDone: !isDone })
-    );
+    dispatch(__toggleTodos({ id, title, content, color, createdAt, isDone: !isDone }));
   };
   const onDelete = () => {
     dispatch(__deleteTodos(id));
@@ -44,17 +42,10 @@ function Todo({ id, title, content, color, createdAt, isDone, setLayId }) {
     setLayId(id);
   };
   return (
-    <ListItem
-      variants={fadeOut}
-      initial="initial"
-      exit="exit"
-      bgcolor={color}
-      layoutId={id + ""}
-      layout
-    >
+    <ListItem variants={fadeOut} initial="initial" exit="exit" bgcolor={color} layoutId={id + ""} layout>
       <TodoItem>
         <div>
-          <Link to={`todos/${id}`}>
+          <Link to={`/todoList/${id}`}>
             <h3>{title}</h3>
           </Link>
           <span onClick={onEdit}>

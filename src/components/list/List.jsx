@@ -23,9 +23,7 @@ function List({ isDone }) {
           ))}
         </AnimatePresence>
       </ListContainer>
-      <AnimatePresence>
-        {layId ? <EditModal layoutId={layId} setLayId={setLayId} /> : null}
-      </AnimatePresence>
+      <AnimatePresence>{layId ? <EditModal layoutId={layId} setLayId={setLayId} /> : null}</AnimatePresence>
     </BigContainer>
   );
 }
