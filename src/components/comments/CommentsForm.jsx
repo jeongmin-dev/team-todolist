@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { __addComment } from "../../redux/modules/comments";
+import CheckSvg from "../../styles/svg/CheckSvg";
 
 function CommentsForm() {
   const { id } = useParams();
@@ -24,6 +25,7 @@ function CommentsForm() {
       comment: "",
       createdAt: Date.now(),
     });
+    alert("작성 완료!! 😆");
   }
 
   function onChange(e) {
@@ -33,21 +35,31 @@ function CommentsForm() {
 
   return (
     <Form onSubmit={Submit}>
-      <CommentInput type="text" name="comment" value={commentInput.comment} onChange={onChange} />
+      <CommentInput maxLength="40" type="text" name="comment" value={commentInput.comment} onChange={onChange} />
       {/* <Button>작성</Button> */}
-      <button>작성</button>
+      <button style={{ position: "absolute", marginTop: "50px", marginRight: "10px" }}>
+        <CheckSvg />
+      </button>
     </Form>
   );
 }
 export default CommentsForm;
 
-const Form = styled.form``;
+const Form = styled.form`
+  svg {
+    width: 18px;
+  }
+  display: flex;
+  justify-content: flex-end;
+`;
 
 const CommentInput = styled.input`
   margin-top: 10px;
   padding: 10px;
   width: 100%;
   height: 100px;
+  position: relative;
   border-radius: 6px;
-  background-color: pink; // 해당 색깔로 넣어주기
+  border: 1px solid #fb9f71;
+  box-shadow: 3px 3px 2px 2px lightgrey;
 `;

@@ -16,7 +16,7 @@ function Comments() {
   return (
     <Layout>
       <Header title={"Comments"} />
-      <TodoHeader>{sepTodo.content}</TodoHeader>
+      <TodoHeader>TODO : {sepTodo.content}</TodoHeader>
       <CommentsForm />
       <CommentsList />
     </Layout>
@@ -25,5 +25,6 @@ function Comments() {
 export default Comments;
 
 const TodoHeader = styled.div`
+  font-size: 13px;
   margin-top: 20px;
 `;

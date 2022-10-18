@@ -26,6 +26,23 @@ function CommentsList() {
 export default CommentsList;
 
 const CommentList = styled.div`
-  height: 250px;
-  border: 1px solid pink;
+  margin-top: 20px;
+  height: 295px;
+
+  overflow-y: scroll;
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #fb9f71;
+    background-clip: padding-box;
+    border: 2px solid transparent;
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background-color: #ffc977;
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 5px white;
+  }
 `;
