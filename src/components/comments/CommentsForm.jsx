@@ -1,26 +1,21 @@
 import React from "react";
-import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { __addComment } from "../../redux/modules/comments";
 import CheckSvg from "../../styles/svg/CheckSvg";
 import useInputs from "../../hooks/useInputs";
 
-function CommentsForm() {
-  const { id } = useParams();
+function CommentsForm({ id }) {
   const dispatch = useDispatch();
-
-  // const [commentInput, setCommentInput] = useState({
-  //   comment: "",
-  // });
   const { inputs, onChange, reset } = useInputs({ comment: "" });
 
+  // 댓글을 생성하는 함수
   function Submit(e) {
     e.preventDefault();
     if (inputs.comment.trim() === "") return alert("댓글을 입력해주세요!");
-    dispatch(__addComment({ ...inputs, todoId: +id, createdAt: Date.now() }));
-    reset();
+    dispatch(__addComment({ ...inputs, todoId: id, createdAt: Date.now() }));
     alert("작성 완료!! 😆");
+    reset();
   }
 
   return (

@@ -7,6 +7,7 @@ import CommentEdit from "./CommentEdit";
 function CommentsList({ id }) {
   const { comments } = useSelector((state) => state.comments);
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(__getComment());
   }, [dispatch]);

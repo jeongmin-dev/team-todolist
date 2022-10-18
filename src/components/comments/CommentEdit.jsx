@@ -12,14 +12,22 @@ function CommentEdit({ comment }) {
   const [disable, setDisable] = useState(true);
   const dispatch = useDispatch();
   const { inputs, onChange, reset } = useInputs({ comment: comment.comment });
-  const onDelete = (commentId) => {
-    dispatch(__deleteComment(commentId));
-  };
   const inputRef = useRef();
-  const onEdit = async (e) => {
-    //dispatch(__editComment(commentId));
+
+  // 댓글을 삭제하는 함수
+  const onDelete = (e) => {
+    e.stopPropagation();
+    const result = window.confirm("정말 삭제하시겠습니까? 😢");
+    if (!result) return;
+    dispatch(__deleteComment(comment.id));
+  };
+
+  // 수정폼 보여주는 함수
+  const onEdit = () => {
     setDisable(false);
   };
+
+  // 변경된 input값을 저장하는 함수
   const EditSave = () => {
     dispatch(__editSave({ ...comment, ...inputs }));
     setDisable(true);
@@ -40,17 +48,7 @@ function CommentEdit({ comment }) {
         onChange={onChange}
       />
       {disable ? (
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            const result = window.confirm("정말 삭제하시겠습니까? 😢");
-            if (result) {
-              return onDelete(comment.id);
-            } else {
-              return;
-            }
-          }}
-        >
+        <button onClick={onDelete}>
           <DeleteSvg />
         </button>
       ) : (
@@ -64,11 +62,11 @@ function CommentEdit({ comment }) {
         </button>
       )}
       {disable ? (
-        <button onClick={() => onEdit(comment.id)}>
+        <button onClick={onEdit}>
           <EditSvg />
         </button>
       ) : (
-        <button onClick={() => EditSave(comment.id)}>
+        <button onClick={EditSave}>
           <CheckSvg />
         </button>
       )}

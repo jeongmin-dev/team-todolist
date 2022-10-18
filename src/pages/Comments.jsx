@@ -16,7 +16,7 @@ function Comments() {
     <Layout>
       <Header title={"Comments"} />
       <TodoHeader>TODO : {todo?.content}</TodoHeader>
-      <CommentsForm />
+      <CommentsForm id={+id} />
       <CommentsList id={+id} />
     </Layout>
   );

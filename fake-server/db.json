@@ -107,18 +107,6 @@
       "id": 7
     },
     {
-      "comment": "ㅇㅁㅇㅁㄴㅇㅁㅇㅁㄴㅇdasdasd",
-      "todoId": 1666102199492,
-      "createdAt": 1666108987433,
-      "id": 8
-    },
-    {
-      "comment": "asdsad",
-      "todoId": 1666102354007,
-      "createdAt": 1666109379925,
-      "id": 9
-    },
-    {
       "comment": "dasds",
       "todoId": 1666093008297,
       "createdAt": 1666110438074,
@@ -135,6 +123,24 @@
       "todoId": 12,
       "createdAt": 1666111025752,
       "id": 12
+    },
+    {
+      "comment": "안녕!",
+      "todoId": 1666102354007,
+      "createdAt": 1666114335461,
+      "id": 13
+    },
+    {
+      "comment": "dsadsadsa",
+      "todoId": 1666102199492,
+      "createdAt": 1666115125525,
+      "id": 14
+    },
+    {
+      "comment": "좋아요 안뇽",
+      "todoId": 1666102199492,
+      "createdAt": 1666115380687,
+      "id": 15
     }
   ]
 }
