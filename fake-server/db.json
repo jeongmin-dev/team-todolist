@@ -57,5 +57,12 @@
       "createdAt": 1665846659220
     }
   ],
-  "comments": []
+  "comments": [
+    {
+      "todoId": 8,
+      "comment": "ㄴㅁㅇㅁㄴㅇ",
+      "createdAt": 1666092564688,
+      "id": 1
+    }
+  ]
 }
