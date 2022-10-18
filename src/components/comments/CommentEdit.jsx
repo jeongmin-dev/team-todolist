@@ -22,7 +22,7 @@ function CommentEdit({ comment }) {
     dispatch(__deleteComment(comment.id));
   };
 
-  // 수정폼 보여주는 함수
+  // Edit Form을  보여주는 함수
   const onEdit = () => {
     setDisable(false);
   };
@@ -37,6 +37,7 @@ function CommentEdit({ comment }) {
   useEffect(() => {
     if (!disable) inputRef.current.focus();
   }, [disable]);
+
   return (
     <CommentContainer>
       <ComInput
