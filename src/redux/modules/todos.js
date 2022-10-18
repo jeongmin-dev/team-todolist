@@ -21,6 +21,7 @@ export const __getTodos = createAsyncThunk(
   async (payload, thunkApi) => {
     try {
       const { data } = await axios.get(SERVER_URL);
+      console.log(data);
       return thunkApi.fulfillWithValue(data);
     } catch (e) {
       return thunkApi.rejectWithValue(e);
@@ -60,7 +61,6 @@ export const __deleteTodos = createAsyncThunk(
 export const __editTodos = createAsyncThunk(
   "todos/editTodos",
   async (payload, thunkApi) => {
-    console.log(payload);
     try {
       const { data } = await axios.patch(
         `${SERVER_URL}/${payload.id}`,
@@ -134,11 +134,9 @@ const todosSlice = createSlice({
       state.error = action.payload;
     },
     [__addTodos.pending]: (state) => {
-      state.isSuccess = false;
       state.isLoading = true;
     },
     [__addTodos.fulfilled]: (state, action) => {
-      state.isSuccess = true;
       state.isLoading = false;
       state.todos.push(action.payload);
     },

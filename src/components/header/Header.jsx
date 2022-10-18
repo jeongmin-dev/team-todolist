@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { Flexbox } from "../../styles/flex";
 
+/** 뒤로 가기 버튼을 사용할 수 있는 네비게이션 */
 function Header({ title }) {
   const navigate = useNavigate();
   const { pathname } = window.location;

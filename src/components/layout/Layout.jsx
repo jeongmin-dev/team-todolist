@@ -8,7 +8,7 @@ export default Layout;
 
 const Wrapper = styled.div`
   width: 60vw;
-  max-width: 1000px;
+  max-width: 850px;
   min-width: 400px;
   height: 560px;
   /* min-height: 550px;
