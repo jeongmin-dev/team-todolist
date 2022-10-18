@@ -1,14 +1,6 @@
 {
   "todos": [
     {
-      "id": 133,
-      "title": "hello",
-      "content": "나이따~",
-      "color": "#F4CEB8",
-      "isDone": false,
-      "createdAt": 1665846659220
-    },
-    {
       "id": 5,
       "title": "수정완료!수정완료수정완료",
       "content": "이야야!!",
@@ -63,14 +55,6 @@
       "color": "#8cacff",
       "isDone": false,
       "createdAt": 1665846659220
-    },
-    {
-      "title": "잠자기 아니아니아니",
-      "content": "밥먹기",
-      "color": "#E4EF93",
-      "id": 1666014581125,
-      "isDone": false,
-      "createAt": 1666014581125
     }
   ],
   "comments": []
