@@ -12,7 +12,6 @@ function Comments() {
   const { id } = useParams();
   const { todos } = useSelector((state) => state.todos);
   const todo = todos?.find((todo) => todo.id === +id);
-  console.log("todo", todo);
   return (
     <Layout>
       <Header title={"Comments"} />
