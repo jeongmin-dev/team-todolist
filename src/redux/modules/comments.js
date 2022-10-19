@@ -41,22 +41,6 @@ export const __deleteComment = createAsyncThunk(
   }
 );
 
-//댓글수정
-export const __editComment = createAsyncThunk(
-  "comments/editComment",
-  async (payload, thunkApi) => {
-    try {
-      const { data } = await axios.patch(
-        `${SERVER_URL}/${payload.id}`,
-        payload
-      );
-      return thunkApi.fulfillWithValue(data);
-    } catch (e) {
-      return thunkApi.rejectWithValue(e);
-    }
-  }
-);
-
 //수정저장
 export const __editSave = createAsyncThunk(
   "comments/editSave",
@@ -119,20 +103,7 @@ export const commentsSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     },
-    [__editComment.pending]: (state, action) => {
-      state.isLoading = true;
-    },
-    [__editComment.fulfilled]: (state, action) => {
-      state.isLoading = false;
-      const idx = state.comments.findIndex(
-        (comment) => comment.id === action.payload.id
-      );
-      state.comments[idx] = action.payload;
-    },
-    [__editComment.rejected]: (state, action) => {
-      state.isLoading = false;
-      state.error = action.payload;
-    },
+
     [__editSave.fulfilled]: (state, action) => {
       state.isLoading = false;
       const idx = state.comments.findIndex(
