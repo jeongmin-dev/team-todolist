@@ -4,6 +4,7 @@ import { __addTodos } from "../../redux/modules/todos";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import useInputs from "../../hooks/useInputs";
+import { memo } from "react";
 function TodoForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -128,4 +129,4 @@ const Select = styled.select`
   border: 2px solid #40424454;
   border-radius: 10px;
 `;
-export default TodoForm;
+export default memo(TodoForm);

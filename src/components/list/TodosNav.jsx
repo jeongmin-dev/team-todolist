@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { toggleAni } from "../../redux/modules/animation";
@@ -7,7 +8,6 @@ function TodosNav({ focus, setFocus }) {
   const dispatch = useDispatch();
   const onToggle = () => {
     dispatch(toggleAni(null));
-
     setFocus((prev) => !prev);
   };
   return (
@@ -22,7 +22,7 @@ function TodosNav({ focus, setFocus }) {
   );
 }
 
-export default TodosNav;
+export default memo(TodosNav);
 
 const Nav = styled.ul`
   display: flex;

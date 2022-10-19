@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { Flexbox } from "../../styles/flex";
@@ -6,6 +7,7 @@ import { Flexbox } from "../../styles/flex";
 function Header({ title }) {
   const navigate = useNavigate();
   const { pathname } = window.location;
+  console.log("hello");
   const prevPage = () => {
     if (pathname === "/todolist") navigate("/");
     else navigate(-1);
@@ -34,7 +36,7 @@ function Header({ title }) {
     </Nav>
   );
 }
-export default Header;
+export default memo(Header);
 const Nav = styled.div`
   display: flex;
   align-items: center;

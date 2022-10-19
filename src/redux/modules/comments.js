@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-//const SERVER_URL = "http://localhost:3001/comments";
 
 //댓글 가져오는 함수
 export const __getComment = createAsyncThunk(
@@ -10,7 +9,7 @@ export const __getComment = createAsyncThunk(
       const { data } =
         await axios.get(`${process.env.REACT_APP_COMMENTS_URL}?_sort=createdAt&_order=DESC
       `);
-      return thunkApi.fulfillWithValue(data);
+      return thunkApi.fulfillWithValue({ data, id: payload });
     } catch (e) {
       return thunkApi.rejectWithValue(e);
     }

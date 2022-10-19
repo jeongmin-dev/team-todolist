@@ -34,7 +34,7 @@ export const __getTodos = createAsyncThunk(
   async (payload, thunkApi) => {
     try {
       const { data } = await axios.get(SERVER_URL);
-      return thunkApi.fulfillWithValue(data);
+      return thunkApi.fulfillWithValue({ data, isDone: payload });
     } catch (e) {
       return thunkApi.rejectWithValue(e);
     }
@@ -102,7 +102,8 @@ const todosSlice = createSlice({
     },
     [__getTodos.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.todos = action.payload;
+      const { data, isDone } = action.payload;
+      state.todos = data.filter((todo) => todo.isDone === isDone);
     },
     [__getTodos.rejected]: (state, action) => {
       state.isLoading = false;

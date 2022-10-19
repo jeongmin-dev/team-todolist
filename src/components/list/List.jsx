@@ -9,17 +9,16 @@ import EditModal from "./EditModal";
 /** isDone 상태에 따라 todo들을 뿌려주는 컴포넌트  */
 function List({ isDone }) {
   const { todos } = useSelector((state) => state.todos);
-  const data = todos.filter((todo) => todo.isDone === isDone);
   const dispatch = useDispatch();
   const [layId, setLayId] = useState(null);
   useEffect(() => {
-    dispatch(__getTodos());
-  }, [dispatch]);
+    dispatch(__getTodos(isDone));
+  }, [dispatch, isDone]);
   return (
     <BigContainer>
       <ListContainer>
         <AnimatePresence>
-          {data?.map((todo) => (
+          {todos?.map((todo) => (
             <Todo key={todo.id} {...todo} setLayId={setLayId} />
           ))}
         </AnimatePresence>

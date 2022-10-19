@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 function Layout({ children }) {
+  console.log("jhello");
   return <Wrapper>{children}</Wrapper>;
 }
 
