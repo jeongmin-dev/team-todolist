@@ -32,6 +32,7 @@ export const __getTodo = createAsyncThunk(
 export const __getTodos = createAsyncThunk(
   "todos/getTodos",
   async (_, thunkApi) => {
+    console.log("가져오는중", process.env.REACT_APP_TODOS_URL);
     try {
       const { data } = await axios.get(SERVER_URL);
       return thunkApi.fulfillWithValue(data);
