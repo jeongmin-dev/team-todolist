@@ -1,5 +1,5 @@
 import { AnimatePresence } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { toggleIsLoading } from "../../redux/modules/animation";
@@ -13,7 +13,6 @@ function List({ isDone }) {
   const { todos: data } = useSelector((state) => state.todos);
   const { isLoading } = useSelector((state) => state.animation);
   const todos = data.filter((todo) => todo.isDone === isDone);
-
   const dispatch = useDispatch();
   const [layId, setLayId] = useState(null);
 
