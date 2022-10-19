@@ -5,17 +5,18 @@ import Header from "../components/header/Header";
 import styled from "styled-components";
 import CommentsForm from "../components/comments/CommentsForm";
 import CommentsList from "../components/comments/CommentsList";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 // import DeleteSvg from "../styles/svg/DeleteSvg";
 
 function Comments() {
   const { id } = useParams();
   const { todos } = useSelector((state) => state.todos);
+  const { content } = useLocation();
   const todo = todos?.find((todo) => todo.id === +id);
   return (
     <Layout>
       <Header title={"Comments"} />
-      <TodoHeader>TODO : {todo?.content}</TodoHeader>
+      <TodoHeader>TODO : {todo?.content || content}</TodoHeader>
       <CommentsForm id={+id} />
       <CommentsList id={+id} />
     </Layout>
