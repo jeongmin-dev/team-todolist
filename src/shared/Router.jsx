@@ -6,7 +6,7 @@ import Form from "../pages/Form";
 
 function Router() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.REACT_APP_BASE_URL}>
       <Routes>
         {/*Route를 추가해주세요! */}
         <Route path="/" element={<Home />} />
