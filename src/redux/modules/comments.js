@@ -7,7 +7,9 @@ export const __getComment = createAsyncThunk(
   "comments/getComment",
   async (payload, thunkApi) => {
     try {
-      const { data } = await axios.get(process.env.REACT_APP_COMMENTS_URL);
+      const { data } =
+        await axios.get(`${process.env.REACT_APP_COMMENTS_URL}/?_sort=createdAt&_order=DESC
+      `);
       return thunkApi.fulfillWithValue(data);
     } catch (e) {
       return thunkApi.rejectWithValue(e);
