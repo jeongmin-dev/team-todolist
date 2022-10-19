@@ -15,6 +15,19 @@ export const __addTodos = createAsyncThunk(
   }
 );
 
+/** 상세페이지에서 Todo를 불러오는 함수 */
+export const __getTodo = createAsyncThunk(
+  "todos/getTodo",
+  async (payload, thunkAPI) => {
+    try {
+      const { data } = await axios.get(`${SERVER_URL}/${payload}`);
+      return thunkAPI.fulfillWithValue(data);
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e);
+    }
+  }
+);
+
 /**TodosList 가져오는 함수 */
 export const __getTodos = createAsyncThunk(
   "todos/getTodos",
@@ -76,6 +89,7 @@ const initialState = {
   todos: [],
   isLoading: false,
   error: null,
+  todo: {},
 };
 
 const todosSlice = createSlice({
@@ -93,6 +107,9 @@ const todosSlice = createSlice({
     [__getTodos.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
+    },
+    [__getTodo.fulfilled]: (state, action) => {
+      state.todo = action.payload;
     },
     [__toggleTodos.pending]: (state, action) => {
       state.isLoading = true;
