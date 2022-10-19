@@ -12,15 +12,7 @@ function CommentsList({ id }) {
     dispatch(__getComment());
   }, [dispatch]);
 
-  return (
-    <CommentList>
-      {comments?.map((comment) =>
-        id === comment.todoId ? (
-          <CommentEdit key={comment.id} comment={comment} />
-        ) : null
-      )}
-    </CommentList>
-  );
+  return <CommentList>{comments?.map((comment) => (id === comment.todoId ? <CommentEdit key={comment.id} comment={comment} /> : null))}</CommentList>;
 }
 export default CommentsList;
 

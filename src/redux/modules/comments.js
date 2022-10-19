@@ -3,59 +3,44 @@ import axios from "axios";
 const SERVER_URL = "http://localhost:3001/comments";
 
 //댓글 가져오는 함수
-export const __getComment = createAsyncThunk(
-  "comments/getComment",
-  async (payload, thunkApi) => {
-    try {
-      const { data } = await axios.get(SERVER_URL);
-      return thunkApi.fulfillWithValue(data);
-    } catch (e) {
-      return thunkApi.rejectWithValue(e);
-    }
+export const __getComment = createAsyncThunk("comments/getComment", async (payload, thunkApi) => {
+  try {
+    const { data } = await axios.get(SERVER_URL);
+    return thunkApi.fulfillWithValue(data);
+  } catch (e) {
+    return thunkApi.rejectWithValue(e);
   }
-);
+});
 
 //댓글추가
-export const __addComment = createAsyncThunk(
-  "comments/addComment",
-  async (payload, thunkApi) => {
-    try {
-      const { data } = await axios.post(SERVER_URL, payload);
-      return thunkApi.fulfillWithValue(data);
-    } catch (e) {
-      return thunkApi.rejectWithValue(e);
-    }
+export const __addComment = createAsyncThunk("comments/addComment", async (payload, thunkApi) => {
+  try {
+    const { data } = await axios.post(SERVER_URL, payload);
+    return thunkApi.fulfillWithValue(data);
+  } catch (e) {
+    return thunkApi.rejectWithValue(e);
   }
-);
+});
 
 //댓글삭제
-export const __deleteComment = createAsyncThunk(
-  "comments/deleteComment",
-  async (payload, thunkApi) => {
-    try {
-      await axios.delete(`${SERVER_URL}/${payload}`);
-      return thunkApi.fulfillWithValue(payload);
-    } catch (e) {
-      return thunkApi.rejectWithValue(e);
-    }
+export const __deleteComment = createAsyncThunk("comments/deleteComment", async (payload, thunkApi) => {
+  try {
+    await axios.delete(`${SERVER_URL}/${payload}`);
+    return thunkApi.fulfillWithValue(payload);
+  } catch (e) {
+    return thunkApi.rejectWithValue(e);
   }
-);
+});
 
 //수정저장
-export const __editSave = createAsyncThunk(
-  "comments/editSave",
-  async (payload, thunkApi) => {
-    try {
-      const { data } = await axios.patch(
-        `${SERVER_URL}/${payload.id}`,
-        payload
-      );
-      return thunkApi.fulfillWithValue(data);
-    } catch (e) {
-      return thunkApi.rejectWithValue(e);
-    }
+export const __editSave = createAsyncThunk("comments/editSave", async (payload, thunkApi) => {
+  try {
+    const { data } = await axios.patch(`${SERVER_URL}/${payload.id}`, payload);
+    return thunkApi.fulfillWithValue(data);
+  } catch (e) {
+    return thunkApi.rejectWithValue(e);
   }
-);
+});
 
 const initialState = {
   comments: [],
@@ -95,9 +80,7 @@ export const commentsSlice = createSlice({
     },
     [__deleteComment.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.comments = state.comments.filter(
-        (comment) => comment.id !== action.payload
-      );
+      state.comments = state.comments.filter((comment) => comment.id !== action.payload);
     },
     [__deleteComment.rejected]: (state, action) => {
       state.isLoading = false;
@@ -106,9 +89,7 @@ export const commentsSlice = createSlice({
 
     [__editSave.fulfilled]: (state, action) => {
       state.isLoading = false;
-      const idx = state.comments.findIndex(
-        (comment) => comment.id === action.payload.id
-      );
+      const idx = state.comments.findIndex((comment) => comment.id === action.payload.id);
       state.comments[idx] = action.payload;
     },
   },

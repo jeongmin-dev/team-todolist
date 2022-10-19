@@ -20,17 +20,9 @@ function CommentsForm({ id }) {
 
   return (
     <Form onSubmit={Submit}>
-      <CommentInput
-        maxLength="40"
-        type="text"
-        name="comment"
-        value={inputs.comment}
-        onChange={onChange}
-      />
+      <CommentInput maxLength="40" type="text" name="comment" value={inputs.comment} onChange={onChange} />
       {/* <Button>작성</Button> */}
-      <button
-        style={{ position: "absolute", marginTop: "50px", marginRight: "10px" }}
-      >
+      <button style={{ position: "absolute", marginTop: "50px", marginRight: "10px" }}>
         <CheckSvg />
       </button>
     </Form>

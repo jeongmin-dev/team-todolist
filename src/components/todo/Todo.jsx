@@ -35,9 +35,7 @@ function Todo({ id, title, content, color, createdAt, isDone, setLayId }) {
   const fadeOut = useSelector((state) => state.animation.boxAni);
   const onToggle = () => {
     dispatch(toggleAni(boxAni));
-    dispatch(
-      __toggleTodos({ id, title, content, color, createdAt, isDone: !isDone })
-    );
+    dispatch(__toggleTodos({ id, title, content, color, createdAt, isDone: !isDone }));
   };
   const onDelete = () => {
     dispatch(__deleteTodos(id));
@@ -47,17 +45,10 @@ function Todo({ id, title, content, color, createdAt, isDone, setLayId }) {
     setLayId(id);
   };
   return (
-    <ListItem
-      variants={fadeOut}
-      initial="initial"
-      exit="exit"
-      bgcolor={color}
-      layoutId={id + ""}
-      layout
-    >
+    <ListItem variants={fadeOut} initial="initial" exit="exit" bgcolor={color} layoutId={id + ""} layout>
       <TodoItem>
         <div>
-          <Link to={`/todoList/${id}`} state={{ id, title, content }}>
+          <Link to={`/todoList/${id}`}>
             <h3>{title}</h3>
           </Link>
           <EditBtn onClick={onEdit}>
@@ -127,7 +118,6 @@ const TodoItem = styled.div`
       }
     }
   }
-
   p {
     display: -webkit-box;
     overflow: hidden;
@@ -139,12 +129,10 @@ const TodoItem = styled.div`
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
   }
-
   div {
     display: flex;
     justify-content: space-between;
   }
-
   @media screen and (max-width: 780px) {
     h3 {
       font-size: 20px;
@@ -170,7 +158,6 @@ const EditBtn = styled.span`
   right: 0;
   width: 15px;
   height: 15px;
-
   cursor: pointer;
   svg {
     color: rgba(0, 0, 0, 0.4);
