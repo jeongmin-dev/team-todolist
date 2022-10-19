@@ -2,6 +2,7 @@ import { AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { toggleIsLoading } from "../../redux/modules/animation";
 import { __getTodos } from "../../redux/modules/todos";
 import SmallLoading from "../loading/smLoading";
 import Todo from "../todo/Todo";
@@ -10,21 +11,22 @@ import EditModal from "./EditModal";
 /** isDone 상태에 따라 todo들을 뿌려주는 컴포넌트  */
 function List({ isDone }) {
   const { todos: data } = useSelector((state) => state.todos);
+  const { isLoading } = useSelector((state) => state.animation);
   const todos = data.filter((todo) => todo.isDone === isDone);
-  const [isLoading, setIsLoading] = useState(false);
 
   const dispatch = useDispatch();
   const [layId, setLayId] = useState(null);
+
   useEffect(() => {
     dispatch(__getTodos());
   }, [dispatch]);
 
   useEffect(() => {
-    setIsLoading(true);
     setTimeout(() => {
-      setIsLoading(false);
-    }, 500);
-  }, [isDone]);
+      dispatch(toggleIsLoading(false));
+    }, 300);
+  }, [dispatch, isDone]);
+
   return (
     <BigContainer>
       <ListContainer>

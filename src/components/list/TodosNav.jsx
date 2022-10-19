@@ -1,13 +1,14 @@
 import { memo } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
-import { toggleAni } from "../../redux/modules/animation";
+import { toggleAni, toggleIsLoading } from "../../redux/modules/animation";
 
 /** Todolist의 카테고리 이동 네비게이션 */
 function TodosNav({ focus, setFocus }) {
   const dispatch = useDispatch();
   const onToggle = () => {
     dispatch(toggleAni(null));
+    dispatch(toggleIsLoading(true));
     setFocus((prev) => !prev);
   };
   return (

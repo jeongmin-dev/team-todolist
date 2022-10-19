@@ -9,6 +9,7 @@ const initialState = {
       opacity: 0,
     },
   },
+  isLoading: true,
 };
 
 const animationSlice = createSlice({
@@ -18,7 +19,10 @@ const animationSlice = createSlice({
     toggleAni: (state, action) => {
       state.boxAni = action.payload;
     },
+    toggleIsLoading: (state, action) => {
+      state.isLoading = action.payload;
+    },
   },
 });
-export const { toggleAni, toggleLayout } = animationSlice.actions;
+export const { toggleAni, toggleIsLoading } = animationSlice.actions;
 export default animationSlice.reducer;
