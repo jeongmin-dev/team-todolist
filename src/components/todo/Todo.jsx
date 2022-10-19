@@ -8,6 +8,8 @@ import { toggleAni } from "../../redux/modules/animation";
 import CheckSvg from "../../styles/svg/CheckSvg";
 import DeleteSvg from "../../styles/svg/DeleteSvg";
 import EditSvg from "../../styles/svg/EditSvg";
+import timeCheck from "../util/timeCheck";
+import { memo } from "react";
 
 const boxAni = {
   initial: {
@@ -27,6 +29,7 @@ const btnStyle = {
   _padding: "8px",
 };
 
+/** Todo 하나 하나의 컴포넌트 */
 function Todo({ id, title, content, color, createdAt, isDone, setLayId }) {
   const dispatch = useDispatch();
   const fadeOut = useSelector((state) => state.animation.boxAni);
@@ -54,17 +57,17 @@ function Todo({ id, title, content, color, createdAt, isDone, setLayId }) {
     >
       <TodoItem>
         <div>
-          <Link to={`todos/${id}`}>
+          <Link to={`/todoList/${id}`} state={{ id, title, content }}>
             <h3>{title}</h3>
           </Link>
-          <span onClick={onEdit}>
+          <EditBtn onClick={onEdit}>
             <EditSvg />
-          </span>
+          </EditBtn>
         </div>
         <p>{content}</p>
       </TodoItem>
       <TodoUtils>
-        <span>{(createdAt + "").slice(0, 1)} 시간전</span>
+        <span>{timeCheck(createdAt)}</span>
         <TodoBtns>
           <Button {...btnStyle} _onClick={onToggle}>
             <CheckSvg />
@@ -77,7 +80,7 @@ function Todo({ id, title, content, color, createdAt, isDone, setLayId }) {
     </ListItem>
   );
 }
-export default Todo;
+export default memo(Todo);
 
 const ListItem = styled(motion.div)`
   display: flex;
@@ -99,14 +102,22 @@ const ListItem = styled(motion.div)`
 `;
 
 const TodoItem = styled.div`
+  position: relative;
   a {
+    width: 100%;
     h3 {
+      width: 100%;
       margin-bottom: 7px;
+      overflow: hidden;
       color: #262626;
       font-weight: 700;
-      font-size: 23px;
+      font-size: 22px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
       transition: color 1s linear;
       transition: transform 0.3s linear;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
     }
     &:hover {
       h3 {
@@ -128,30 +139,12 @@ const TodoItem = styled.div`
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
   }
-  &:first-child {
-    div {
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-      span {
-        width: 15px;
-        height: 15px;
-        cursor: pointer;
-        svg {
-          color: rgba(0, 0, 0, 0.4);
-          transition: color 1s linear;
-          transition: transform 0.3s linear;
-        }
-        &:hover {
-          svg {
-            color: rgba(0, 0, 0, 0.8);
-            text-shadow: 0 2px 3px rgba(0, 0, 0, 0.15);
-            transform: translateY(-3px);
-          }
-        }
-      }
-    }
+
+  div {
+    display: flex;
+    justify-content: space-between;
   }
+
   @media screen and (max-width: 780px) {
     h3 {
       font-size: 20px;
@@ -168,6 +161,27 @@ const TodoItem = styled.div`
       margin-top: 10px;
       overflow: visible;
       font-size: 18px;
+    }
+  }
+`;
+
+const EditBtn = styled.span`
+  position: absolute;
+  right: 0;
+  width: 15px;
+  height: 15px;
+
+  cursor: pointer;
+  svg {
+    color: rgba(0, 0, 0, 0.4);
+    transition: color 1s linear;
+    transition: transform 0.3s linear;
+  }
+  &:hover {
+    svg {
+      color: rgba(0, 0, 0, 0.8);
+      text-shadow: 0 2px 3px rgba(0, 0, 0, 0.15);
+      transform: translateY(-3px);
     }
   }
 `;

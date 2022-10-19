@@ -10,6 +10,7 @@
 
 # production
 /build
+/fake-server
 
 # misc
 .DS_Store
@@ -21,3 +22,5 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+fake-server/db.json
+fake-server/db.json

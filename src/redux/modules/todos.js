@@ -2,6 +2,19 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 const SERVER_URL = "http://localhost:3001/todos";
 
+/*Todo 추가하기*/
+export const __addTodos = createAsyncThunk(
+  "todos/addTodos",
+  async (arg, thunkAPI) => {
+    try {
+      const { data } = await axios.post(SERVER_URL, arg);
+      return thunkAPI.fulfillWithValue(data);
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e);
+    }
+  }
+);
+
 /**TodosList 가져오는 함수 */
 export const __getTodos = createAsyncThunk(
   "todos/getTodos",
@@ -47,7 +60,6 @@ export const __deleteTodos = createAsyncThunk(
 export const __editTodos = createAsyncThunk(
   "todos/editTodos",
   async (payload, thunkApi) => {
-    console.log(payload);
     try {
       const { data } = await axios.patch(
         `${SERVER_URL}/${payload.id}`,
@@ -120,7 +132,18 @@ const todosSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     },
+    [__addTodos.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [__addTodos.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.todos.push(action.payload);
+    },
+    [__addTodos.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
   },
 });
-
+export const { clearTodo } = todosSlice.actions;
 export default todosSlice.reducer;

@@ -64,11 +64,18 @@ input{
   outline: none;
   border:none;
 }
+select{
+  outline: none;
+}
 body{
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   background-color: ${(props) => props.theme._bgColor};
+}
+/*링크 버튼 이미지*/
+.imgBtn {
+  width: 140px;
 }
 `;

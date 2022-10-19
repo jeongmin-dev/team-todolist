@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Flexbox } from "../styles/flex";
 
+/** 만능버튼 */
 function Button(props) {
   const {
     _width,
