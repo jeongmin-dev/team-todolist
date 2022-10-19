@@ -1,13 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-const SERVER_URL = "http://localhost:3001/todos";
+//const SERVER_URL = "http://localhost:3001/todos";
 
 /*Todo 추가하기*/
 export const __addTodos = createAsyncThunk(
   "todos/addTodos",
   async (arg, thunkAPI) => {
     try {
-      const { data } = await axios.post(SERVER_URL, arg);
+      const { data } = await axios.post(process.env.REACT_APP_TODOS_URL, arg);
       return thunkAPI.fulfillWithValue(data);
     } catch (e) {
       return thunkAPI.rejectWithValue(e);
@@ -20,7 +20,7 @@ export const __getTodos = createAsyncThunk(
   "todos/getTodos",
   async (payload, thunkApi) => {
     try {
-      const { data } = await axios.get(SERVER_URL);
+      const { data } = await axios.get(process.env.REACT_APP_TODOS_URL);
       return thunkApi.fulfillWithValue(data);
     } catch (e) {
       return thunkApi.rejectWithValue(e);
@@ -34,7 +34,7 @@ export const __toggleTodos = createAsyncThunk(
   async (payload, thunkApi) => {
     try {
       const { data } = await axios.patch(
-        `${SERVER_URL}/${payload.id}`,
+        `${process.env.REACT_APP_TODOS_URL}/${payload.id}`,
         payload
       );
       return thunkApi.fulfillWithValue(data);
@@ -49,7 +49,7 @@ export const __deleteTodos = createAsyncThunk(
   "todos/deleteTodos",
   async (payload, thunkApi) => {
     try {
-      await axios.delete(`${SERVER_URL}/${payload}`);
+      await axios.delete(`${process.env.REACT_APP_TODOS_URL}/${payload}`);
       return thunkApi.fulfillWithValue(payload);
     } catch (e) {
       return thunkApi.rejectWithValue(e);
@@ -62,7 +62,7 @@ export const __editTodos = createAsyncThunk(
   async (payload, thunkApi) => {
     try {
       const { data } = await axios.patch(
-        `${SERVER_URL}/${payload.id}`,
+        `${process.env.REACT_APP_TODOS_URL}/${payload.id}`,
         payload
       );
       return thunkApi.fulfillWithValue(data);
