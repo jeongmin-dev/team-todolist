@@ -2,21 +2,6 @@
   "todos": [
     {
       "title": "안녕하세요",
-<<<<<<< HEAD
-      "content": "반갑",
-      "color": "#F4CEB8",
-      "id": 1666161247094,
-      "isDone": false,
-      "createdAt": 1666161247094
-    },
-    {
-      "title": "반갑습니다ㅎㅎ",
-      "content": "하이룽",
-      "color": "#E4EF93",
-      "id": 1666161517304,
-      "isDone": false,
-      "createdAt": 1666161517304
-=======
       "content": "지금",
       "color": "#E4EF93",
       "id": 1666153600872,
@@ -30,28 +15,14 @@
       "id": 1666153829907,
       "isDone": true,
       "createdAt": 1666153829907
->>>>>>> main
     }
   ],
   "comments": [
     {
-<<<<<<< HEAD
-      "comment": "반갑1",
-      "todoId": 1666161247094,
-      "createdAt": 1666161251590,
-      "id": 1
-    },
-    {
-      "comment": "안녕하세요",
-      "todoId": 1666161247094,
-      "createdAt": 1666161506775,
-      "id": 2
-=======
       "comment": "1번",
       "todoId": 1666153600872,
       "createdAt": 1666153609139,
       "id": 1
->>>>>>> main
     }
   ]
 }

@@ -20,5 +20,5 @@ const animationSlice = createSlice({
     },
   },
 });
-export const { toggleAni } = animationSlice.actions;
+export const { toggleAni, toggleLayout } = animationSlice.actions;
 export default animationSlice.reducer;

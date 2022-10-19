@@ -7,6 +7,7 @@ function TodosNav({ focus, setFocus }) {
   const dispatch = useDispatch();
   const onToggle = () => {
     dispatch(toggleAni(null));
+
     setFocus((prev) => !prev);
   };
   return (

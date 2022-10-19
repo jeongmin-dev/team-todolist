@@ -32,17 +32,19 @@ const btnStyle = {
 /** Todo 하나 하나의 컴포넌트 */
 function Todo({ id, title, content, color, createdAt, isDone, setLayId }) {
   const dispatch = useDispatch();
-  const fadeOut = useSelector((state) => state.animation.boxAni);
+  const { boxAni: fadeOut, isLayout } = useSelector((state) => state.animation);
   const onToggle = () => {
     dispatch(toggleAni(boxAni));
     dispatch(
       __toggleTodos({ id, title, content, color, createdAt, isDone: !isDone })
     );
   };
+
   const onDelete = () => {
     dispatch(__deleteTodos(id));
     dispatch(toggleAni(boxAni));
   };
+
   const onEdit = () => {
     setLayId(id);
   };
@@ -53,7 +55,7 @@ function Todo({ id, title, content, color, createdAt, isDone, setLayId }) {
       exit="exit"
       bgcolor={color}
       layoutId={id + ""}
-      layout
+      layout={isLayout}
     >
       <TodoItem>
         <div>
