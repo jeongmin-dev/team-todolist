@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { __getTodos } from "../../redux/modules/todos";
+import SmallLoading from "../loading/smLoading";
 import Todo from "../todo/Todo";
 import EditModal from "./EditModal";
 
@@ -10,19 +11,32 @@ import EditModal from "./EditModal";
 function List({ isDone }) {
   const { todos: data } = useSelector((state) => state.todos);
   const todos = data.filter((todo) => todo.isDone === isDone);
+  const [isLoading, setIsLoading] = useState(false);
+
   const dispatch = useDispatch();
   const [layId, setLayId] = useState(null);
   useEffect(() => {
     dispatch(__getTodos());
   }, [dispatch]);
+
+  useEffect(() => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 500);
+  }, [isDone]);
   return (
     <BigContainer>
       <ListContainer>
-        <AnimatePresence>
-          {todos?.map((todo) => (
-            <Todo key={todo.id} {...todo} setLayId={setLayId} />
-          ))}
-        </AnimatePresence>
+        {isLoading ? (
+          <SmallLoading />
+        ) : (
+          <AnimatePresence>
+            {todos?.map((todo) => (
+              <Todo key={todo.id} {...todo} setLayId={setLayId} />
+            ))}
+          </AnimatePresence>
+        )}
       </ListContainer>
       <AnimatePresence>
         {layId ? <EditModal layoutId={layId} setLayId={setLayId} /> : null}
