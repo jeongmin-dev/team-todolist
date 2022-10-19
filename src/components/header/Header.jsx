@@ -12,7 +12,7 @@ function Header({ title }) {
   };
   return (
     <Nav as="header">
-      {pathname !== "/" ? (
+      {pathname !== "/#/" ? (
         <span onClick={prevPage}>
           <svg
             className="w-6 h-6"

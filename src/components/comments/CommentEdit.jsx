@@ -40,14 +40,7 @@ function CommentEdit({ comment }) {
 
   return (
     <CommentContainer>
-      <ComInput
-        ref={inputRef}
-        type="text"
-        name="comment"
-        value={inputs.comment}
-        disabled={disable}
-        onChange={onChange}
-      />
+      <ComInput ref={inputRef} type="text" name="comment" value={inputs.comment} disabled={disable} onChange={onChange} />
       {disable ? (
         <button onClick={onDelete}>
           <DeleteSvg />

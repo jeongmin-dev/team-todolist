@@ -57,7 +57,7 @@ function Todo({ id, title, content, color, createdAt, isDone, setLayId }) {
     >
       <TodoItem>
         <div>
-          <Link to={`/todoList/${id}`} state={{ id, title, content }}>
+          <Link to={`/todoList/${id}`}>
             <h3>{title}</h3>
           </Link>
           <EditBtn onClick={onEdit}>

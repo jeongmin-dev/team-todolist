@@ -1,14 +1,21 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-const SERVER_URL = "http://localhost:3001/comments";
+//const SERVER_URL = "http://localhost:3001/comments";
 
 //댓글 가져오는 함수
 export const __getComment = createAsyncThunk(
   "comments/getComment",
   async (payload, thunkApi) => {
     try {
+<<<<<<< HEAD
       const { data } = await axios.get(SERVER_URL);
       return thunkApi.fulfillWithValue({ data, id: payload });
+=======
+      const { data } =
+        await axios.get(`${process.env.REACT_APP_COMMENTS_URL}?_sort=createdAt&_order=DESC
+      `);
+      return thunkApi.fulfillWithValue(data);
+>>>>>>> main
     } catch (e) {
       return thunkApi.rejectWithValue(e);
     }
@@ -20,7 +27,10 @@ export const __addComment = createAsyncThunk(
   "comments/addComment",
   async (payload, thunkApi) => {
     try {
-      const { data } = await axios.post(SERVER_URL, payload);
+      const { data } = await axios.post(
+        process.env.REACT_APP_COMMENTS_URL,
+        payload
+      );
       return thunkApi.fulfillWithValue(data);
     } catch (e) {
       return thunkApi.rejectWithValue(e);
@@ -33,7 +43,7 @@ export const __deleteComment = createAsyncThunk(
   "comments/deleteComment",
   async (payload, thunkApi) => {
     try {
-      await axios.delete(`${SERVER_URL}/${payload}`);
+      await axios.delete(`${process.env.REACT_APP_COMMENTS_URL}/${payload}`);
       return thunkApi.fulfillWithValue(payload);
     } catch (e) {
       return thunkApi.rejectWithValue(e);
@@ -47,7 +57,7 @@ export const __editSave = createAsyncThunk(
   async (payload, thunkApi) => {
     try {
       const { data } = await axios.patch(
-        `${SERVER_URL}/${payload.id}`,
+        `${process.env.REACT_APP_COMMENTS_URL}/${payload.id}`,
         payload
       );
       return thunkApi.fulfillWithValue(data);

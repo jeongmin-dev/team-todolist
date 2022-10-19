@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-const SERVER_URL = "http://localhost:3001/todos";
+const SERVER_URL = process.env.REACT_APP_TODOS_URL;
 
 /*Todo 추가하기*/
 export const __addTodos = createAsyncThunk(
@@ -8,6 +8,19 @@ export const __addTodos = createAsyncThunk(
   async (arg, thunkAPI) => {
     try {
       const { data } = await axios.post(SERVER_URL, arg);
+      return thunkAPI.fulfillWithValue(data);
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e);
+    }
+  }
+);
+
+/** 상세페이지에서 Todo를 불러오는 함수 */
+export const __getTodo = createAsyncThunk(
+  "todos/getTodo",
+  async (payload, thunkAPI) => {
+    try {
+      const { data } = await axios.get(`${SERVER_URL}/${payload}`);
       return thunkAPI.fulfillWithValue(data);
     } catch (e) {
       return thunkAPI.rejectWithValue(e);
@@ -76,6 +89,7 @@ const initialState = {
   todos: [],
   isLoading: false,
   error: null,
+  todo: {},
 };
 
 const todosSlice = createSlice({
@@ -93,6 +107,9 @@ const todosSlice = createSlice({
     [__getTodos.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
+    },
+    [__getTodo.fulfilled]: (state, action) => {
+      state.todo = action.payload;
     },
     [__toggleTodos.pending]: (state, action) => {
       state.isLoading = true;
