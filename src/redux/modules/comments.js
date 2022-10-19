@@ -110,7 +110,6 @@ export const commentsSlice = createSlice({
       state.error = action.payload;
     },
     [__editSave.fulfilled]: (state, action) => {
-      console.log(action);
       state.isLoading = false;
       const idx = state.comments.findIndex((comment) => comment.id === action.payload.id);
       state.comments[idx] = action.payload;

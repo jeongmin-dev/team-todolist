@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
-import { useState, React } from "react";
-import { __deleteComment, __editComment, __editSave } from "../../redux/modules/comments";
+import { useState, React, useEffect } from "react";
+import { __deleteComment, __editSave } from "../../redux/modules/comments";
 import DeleteSvg from "../../styles/svg/DeleteSvg";
 import CloseSvg from "../../styles/svg/CloseSvg";
 import EditSvg from "../../styles/svg/EditSvg";
@@ -16,10 +16,8 @@ function CommentEdit({ comment }) {
     dispatch(__deleteComment(commentId));
   };
 
-  const onEdit = (commentId) => {
-    dispatch(__editComment(commentId));
+  const onEdit = () => {
     setDisable(false);
-    document.getElementById("input").focus();
   };
   const EditSave = () => {
     dispatch(__editSave({ ...comment, comment: value }));
@@ -27,6 +25,7 @@ function CommentEdit({ comment }) {
     setDisable(true);
     alert("수정완료! 😁");
   };
+
   const onChangeHandler = (e) => {
     const { value } = e.target;
     setValue(value);
@@ -34,7 +33,7 @@ function CommentEdit({ comment }) {
 
   return (
     <CommentContainer>
-      <ComInput id="input" type="text" name="comment" value={value} disabled={disable} onChange={onChangeHandler} />
+      <ComInput type="text" name="comment" value={value} disabled={disable} onChange={onChangeHandler} />
       {disable ? (
         <button
           onClick={(e) => {
