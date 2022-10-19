@@ -29,7 +29,7 @@ function EditModal({ layoutId, color, setLayId }) {
   const onEdit = (e) => {
     e.preventDefault(e);
 
-    dispatch(__editTodos({ ...todo, ...inputs }));
+    dispatch(__editTodos({ id: todo.id, ...inputs }));
     setLayId(null);
   };
 

@@ -9,16 +9,14 @@ function CommentsList({ id }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(__getComment());
-  }, [dispatch]);
+    dispatch(__getComment(id));
+  }, [dispatch, id]);
 
   return (
     <CommentList>
-      {comments?.map((comment) =>
-        id === comment.todoId ? (
-          <CommentEdit key={comment.id} comment={comment} />
-        ) : null
-      )}
+      {comments?.map((comment) => (
+        <CommentEdit key={comment.id} comment={comment} />
+      ))}
     </CommentList>
   );
 }

@@ -8,7 +8,7 @@ export const __getComment = createAsyncThunk(
   async (payload, thunkApi) => {
     try {
       const { data } = await axios.get(SERVER_URL);
-      return thunkApi.fulfillWithValue(data);
+      return thunkApi.fulfillWithValue({ data, id: payload });
     } catch (e) {
       return thunkApi.rejectWithValue(e);
     }
@@ -73,7 +73,8 @@ export const commentsSlice = createSlice({
     },
     [__getComment.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.comments = action.payload;
+      const { data, id } = action.payload;
+      state.comments = data.filter((comment) => comment.todoId === id);
     },
     [__getComment.rejected]: (state, action) => {
       state.isLoading = false;
