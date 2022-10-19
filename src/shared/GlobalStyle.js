@@ -64,6 +64,9 @@ input{
   outline: none;
   border:none;
 }
+select{
+  outline: none;
+}
 body{
   display: flex;
   justify-content: center;

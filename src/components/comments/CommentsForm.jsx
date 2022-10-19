@@ -1,43 +1,36 @@
 import React from "react";
-import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { useState } from "react";
 import { __addComment } from "../../redux/modules/comments";
 import CheckSvg from "../../styles/svg/CheckSvg";
+import useInputs from "../../hooks/useInputs";
 
-function CommentsForm() {
-  const { id } = useParams();
+function CommentsForm({ id }) {
   const dispatch = useDispatch();
+  const { inputs, onChange, reset } = useInputs({ comment: "" });
 
-  const [commentInput, setCommentInput] = useState({
-    todoId: Number(id),
-    comment: "",
-    createdAt: Date.now(),
-  });
-
+  // 댓글을 생성하는 함수
   function Submit(e) {
     e.preventDefault();
-    if (commentInput.comment.trim() === "") return alert("댓글을 입력해주세요!");
-    dispatch(__addComment({ ...commentInput }));
-    setCommentInput({
-      todoId: Number(id),
-      comment: "",
-      createdAt: Date.now(),
-    });
+    if (inputs.comment.trim() === "") return alert("댓글을 입력해주세요!");
+    dispatch(__addComment({ ...inputs, todoId: id, createdAt: Date.now() }));
     alert("작성 완료!! 😆");
-  }
-
-  function onChange(e) {
-    const { name, value } = e.target;
-    setCommentInput({ ...commentInput, [name]: value });
+    reset();
   }
 
   return (
     <Form onSubmit={Submit}>
-      <CommentInput maxLength="40" type="text" name="comment" value={commentInput.comment} onChange={onChange} />
+      <CommentInput
+        maxLength="40"
+        type="text"
+        name="comment"
+        value={inputs.comment}
+        onChange={onChange}
+      />
       {/* <Button>작성</Button> */}
-      <button style={{ position: "absolute", marginTop: "50px", marginRight: "10px" }}>
+      <button
+        style={{ position: "absolute", marginTop: "50px", marginRight: "10px" }}
+      >
         <CheckSvg />
       </button>
     </Form>
