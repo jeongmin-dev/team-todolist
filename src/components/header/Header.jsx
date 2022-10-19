@@ -7,7 +7,6 @@ import { Flexbox } from "../../styles/flex";
 function Header({ title }) {
   const navigate = useNavigate();
   const { pathname } = window.location;
-  console.log("hello");
   const prevPage = () => {
     if (pathname === "/todolist") navigate("/");
     else navigate(-1);

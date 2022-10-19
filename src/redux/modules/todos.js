@@ -31,10 +31,10 @@ export const __getTodo = createAsyncThunk(
 /**TodosList 가져오는 함수 */
 export const __getTodos = createAsyncThunk(
   "todos/getTodos",
-  async (payload, thunkApi) => {
+  async (_, thunkApi) => {
     try {
       const { data } = await axios.get(SERVER_URL);
-      return thunkApi.fulfillWithValue({ data, isDone: payload });
+      return thunkApi.fulfillWithValue(data);
     } catch (e) {
       return thunkApi.rejectWithValue(e);
     }
@@ -102,8 +102,7 @@ const todosSlice = createSlice({
     },
     [__getTodos.fulfilled]: (state, action) => {
       state.isLoading = false;
-      const { data, isDone } = action.payload;
-      state.todos = data.filter((todo) => todo.isDone === isDone);
+      state.todos = action.payload;
     },
     [__getTodos.rejected]: (state, action) => {
       state.isLoading = false;
